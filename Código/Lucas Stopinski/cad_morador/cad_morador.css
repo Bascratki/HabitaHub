@@ -1,0 +1,93 @@
+* {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("fundo.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media(min-width: 768px) {
+  .form-wrapper {
+      flex-direction: row;
+  }
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-section h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #888;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #666;
+}
+
+.divider {
+  width: 2px;
+  background-color: #575757;
+  margin: 0 20px;
+}
