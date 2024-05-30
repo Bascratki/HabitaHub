@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção e solicitações</title>
+    <link rel = "stylesheet" href = "ManutençaoServiço.css">
+</head>
+<body>
+    <main>
+        <header class = "main_container">
+            <div class = "title_column">
+                <h1>Habitahub</h1>
+            </div>
+            <div class = "condominium_column">
+                <span>Nome do condomínio</span>
+
+            </div>
+        </header>
+        <nav class = "nav_row">
+            <div class = "nav_column">
+                <div class = "nav_button">
+                    <a href = "casa"><img height = "32px" src = "casa.png" alt = "Página princiapl"></a>
+                </div>
+                <div class = "nav_button">
+                    <a href = "lupa"><img height = "32px" src = "lupa.png" alt = "Pesquisar"></a>
+                </div>
+                <div class = "nav_button">
+                    <a href = "funcionalides" type = "button">Funcionalidades</a>    
+                </div>
+            </div>
+            <div class = "nav_column">
+                <div class = "nav_button">
+                    <a href = "login">Login</a>
+                </div>
+                <div class = "nav_button">
+                    <a href = "logout"><img height = "32" src = "logout.png" alt = "logout"></a>
+                </div>
+            </div>
+        </nav>
+
+        <sec  class = "content_container">
+            <div class = "content_row">
+                <div class = "filter_content">
+                    <div class = "maintence_all">
+                        <div class = "filter_row">
+                            <div class = "maintence_column">
+                                <img src = "barra-de-menu.png" width = 10%>
+                                <form>
+                                    <input class = "text_filter" type = "text" placeholder = "Seleção de bloco">
+                                </form>
+                            </div>
+                        </div>
+                        <div class = "filter_row">
+                            <div class = "maintence_column">
+                                <img src = "lupa.png" width = 10%>
+                                <form>
+                                    <input class = "text_filter" type = "text" placeholder = "Seleção de número">
+                                </form>
+                            </div>
+                        </div>
+                        <div class = "maintence_row">
+                            <div class = "maintence_column">
+                                <div class = "border_text_area"> 
+                                    <textarea class = "text_area" rows = "30">
+                                    
+                                    </textarea>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                </div>
+
+                <div class = "maintence_content">
+                    <div class = "maintence_title">
+                        <h2> Manutenções e solicitações</h2>
+                    </div>
+    
+                    <div class = "maintence_all">
+                        <div class = "maintence_row">
+                            <img class = "text_input" src="filtro.png" height = "24px">
+                            <form>
+                                <input class = "text_input" type = "text" placeholder = "Pesquisar data">
+                            </form>
+    
+                        </div>
+                        <div class = "maintence_row">
+                            <div class = "maintence_column">
+                                <div class = "border_column">
+                                    <div class = "text_row">
+                                        <div class = "text_column">
+                                            <label for="data_atual">Data atual:</label>
+                                            <form>
+                                                <input class = "input_box" id = "data_atual" type = "text">
+                                            </form>
+                                        </div>
+                                        <div class = "text_column">
+                                            <label for="numero_processo">Número do processo:</label>
+                                            <form>
+                                                <input class = "input_box" id = "numero_processo" type = "text">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class = "text_row">
+                                        <div class = "text_column">
+                                            <label for="descrição">Descrição:</label>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class = "text_row">
+                                        <div class = "text_column">
+                                           
+                                        <textarea class = "input_box" id = "descrição" rows = "7" cols  = "45">
+                                        </textarea>
+                                        </div>
+                                    </div>
+                                    <div class = "text_row">
+                                        <div class = "text_column">
+                                            <img src="append.png" height= "24">
+                                        </div>
+                                        <div class = "text_column">
+                                            <form>
+                                                <input type = "file">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class = "text_row">
+                                        <div class = "text_column">
+                                            <label for="data_inicio">Data de início:</label>
+                                            <form>
+                                                <input class = "input_box" id = "data_inicio" type = "text">
+                                            </form>
+                                        </div>
+                                        <div class = "text_column">
+                                            <label for="término">Previsão de término:</label>
+                                            <form>
+                                                <input class = "input_box" id = "término" type = "text">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "maintence_column">
+                                <div class = "data_row">
+                                    <div class="text_img">
+                                        <img src = "Calendário.png" width = '90%'>
+                                    </div>
+                                    <div class="text_img">
+                                        <img src = "Voltar.png" width = '10%'>
+                                        <img src="Próximo.png" width = "10%">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+
+
+                
+            </div>
+
+        </sec>
+
+    </main>
+</body>
+</html>

@@ -8,189 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="comunic_int.css"> -->
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-        }
-
-        body {
-            background-image: url("fundo.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #333;
-        }
-
-        .header {
-            background-color: #ffa500;
-            width: 100%;
-            align-items: center;
-            padding: 10px 20px;
-            display: flex;
-        }
-
-        .header .logo {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .header .separator {
-            grid-column: 2;
-            height: 100%;
-            width: 3px;
-            margin: 0 20px;
-            background-color: #333;
-        }
-
-        .header .condo-name {
-            grid-column: 3;
-            font-size: 20px;
-            justify-self: end;
-        }
-
-        .header .actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .header .actions img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .navigation {
-            background-color: #fff;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .navigation img {
-            width: 53px;
-            height: 53px;
-        }
-
-        .navigation .nav-left,
-        .navigation .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .navigation button,
-        .navigation a {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .navigation button:hover,
-        .navigation a:hover {
-            background-color: #555;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 27px 50px;
-            width: 85%;
-            height: 80%;
-
-            margin: auto;
-        }
-
-        .section {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-        }
-
-        .section h2 {
-            margin-bottom: 20px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .noticias,
-        .forum,
-        .enquetes,
-        .mensagens {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .noticia,
-        .forum-post,
-        .enquete,
-        .mensagem {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .noticia,
-        .forum-post {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .forum-post .comments {
-            background-color: #00f;
-            color: #fff;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .enquete input[type="text"] {
-            border: none;
-            border-bottom: 1px solid #333;
-            padding: 5px;
-            width: 100%;
-        }
-
-        .mensagens input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #333;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .navigation {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="comunic_int.css">
 </head>
 
 <body>
@@ -201,15 +19,25 @@
     </div>
     <div class="navigation">
         <div class="nav-left">
-            <img src="../Icones/home-icon.png" alt="Home">
-            <img src="../Icones/search-icon.png" alt="Search">
-            <button>Button</button>
-            <a href="#">Abas de funcionalidades</a>
-            <a href="#">Page</a>
+            <img class="icon" src="../Icones/menu-icon.png" alt="Menu" onclick="toggleMenu()">
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="#">Comunicação</a>
+                <a href="#">Cobranças</a>
+                <a href="#">Orçamento</a>
+                <a href="#">Caixa</a>
+                <a href="#">Reservas</a>
+                <a href="#">Manutenção</a>
+                <a href="#">Acesso</a>
+                <a href="#">Documentos</a>
+                <a href="#">Alertas</a>
+            </div>
+            <script src="script.js"></script>
+            <img class="icon" src="../Icones/home-icon.png" alt="Home">
+            <img class="icon" src="../Icones/search-icon.png" alt="Search">
         </div>
         <div class="nav-right">
             <span>Login</span>
-            <img src="../Icones/logout-icon.png" alt="Logout">
+            <img class="icon" src="../Icones/logout-icon.png" alt="Logout">
         </div>
     </div>
     <div class="container">
@@ -230,6 +58,7 @@
         </div>
         <div class="section forum">
             <h2>Fórum</h2>
+            <hr>
             <div class="forum-post">
                 <p>Aumentar o tamanho da piscina</p>
                 <span class="comments">23</span>
@@ -245,7 +74,10 @@
         </div>
         <div class="section mensagens">
             <h2>Mensagens</h2>
-            <input type="text" placeholder="Pesquise o nome">
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquise o nome">
+                <img class="icon" src="../Icones/search-icon.png" alt="Search">
+            </div>
         </div>
     </div>
 </body>

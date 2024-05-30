@@ -1,0 +1,43 @@
+
+.box1 {
+    background-color: rgb(255, 149, 0);
+    height: 50px;
+    border: 1px solid rgb(0, 0, 0);
+    text-align: top;
+    }
+    .box2 {
+    background-color: rgb(230, 227, 223);
+    height: 26px;
+    border: 1px solid rgb(0, 0, 0);
+    opacity: 0.8;
+    }
+    .box3 {
+    background-color: rgb(230, 227, 223);
+    height: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    opacity: 0.8
+    }
+    .box4 {
+    background-color: rgb(230, 227, 223);
+    height: 210px;
+    width: 150px;
+    border: 1px solid rgb(0, 0, 0);
+    opacity: 0.8
+    }
+    .box6 {
+    background-color: rgb(230, 227, 223);
+    height: 240px;
+    width: 450px;
+    text-align: center;
+    border: 1px solid rgb(0, 0, 0);
+    position: absolute;
+    left: 200px;
+    top: 150px;
+    opacity: 0.8
+    }
+    .box5 {
+    background-image:
+    url("https://admcasa.com.br/wp-content/uploads/2021/11/condominio-de-casas-1-1.jpg");
+    height: 451px;
+    width: 800px;
+    }
