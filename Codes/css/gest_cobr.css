@@ -108,9 +108,6 @@ main {
 .content {
     flex-grow: 1;
     padding: 20px;
-    background-image: url("condominioluxo.jpg");
-    background-size: cover;
-    background-position: center;
     color: white;
     display: flex;
     flex-direction: column;

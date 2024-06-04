@@ -7,7 +7,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-image: url(./fundo.png);
+    background-image: url("../background/fundo.png");
     overflow: hidden;
     font-family: sans-serif;
 }

@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReservaEspaços</title>
-    <link rel="stylesheet" href="reserva.css">
+    <title>Reservas de Espaços</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reserv_esp.css">
+    <link rel="stylesheet" href="../css/comunic_int.css">
 </head>
+
 <body>
-    <header class="header">
-        <div class="Quadrados-de-cima">
-            <h1>HabitaHub</h1></div>
-            <div class="condominio-nome">Nome do condomínio</div>
-        <div class="left">
-            <img src="home_icon.png" alt="Home" class="icon">
-            <img src="button_icon.png" alt="Button" class="icon">
-            <img src="tabs_icon.png" alt="Tabs" class="icon">
-            <img src="page_icon.png" alt="Page" class="icon">
+    <div class="header">
+        <div class="logo">HabitaHub</div>
+        <div class="separator"></div>
+        <div class="condo-name">Nome do condomínio</div>
+    </div>
+    <div class="navigation">
+        <div class="nav-left">
+            <img class="icon menu-icon" src="../icons/menu-icon.png" alt="Menu">
+            <div class="dropdown-menu">
+                <a href="comunic_int.html">Comunicação</a>
+                <a href="gest_cobr.html">Cobranças</a>
+                <a href="ctrl_orcamento.html">Orçamento</a>
+                <a href="fluxo_caixa.html">Fluxo de Caixa</a>
+                <a href="reserv_esp.html">Reservas</a>
+                <a href="manut_servic.html">Manutenção</a>
+                <a href="ctrl_acess.html">Acesso</a>
+                <a href="gest_doc.html">Documentos</a>
+                <a href="alert_notif.html">Alertas</a>
+            </div>
+            <img class="icon" src="../icons/home-icon.png" alt="Home">
+            <img class="icon" src="../icons/search-icon.png" alt="Search">
         </div>
-        <div class="right">
+        <div class="nav-right">
             <span>Login</span>
-            <button><img src="power_icon.png" alt="Power"></button>
+            <img class="icon" src="../icons/logout-icon.png" alt="Logout">
         </div>
-    </header>
+    </div>
     <div class="container">
         <div class="sidebar">
             <h2>Espaços Comuns</h2>
@@ -105,6 +123,8 @@
             </div>
         </div>
     </div>
+
+    <script src="../js/menu.js"></script>
 </body>
 </html>
                         

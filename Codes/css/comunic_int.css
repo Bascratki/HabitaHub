@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: url("fundo.png");
+  background-image: url("../background/fundo.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -77,6 +77,7 @@ body {
   gap: 10px;
   font-size: 24px;
   font-weight: 700;
+  position: relative;
 }
 
 .navigation button,
@@ -102,7 +103,6 @@ body {
   gap: 27px 50px;
   width: 85%;
   height: 80%;
-
   margin: auto;
 }
 
@@ -189,30 +189,21 @@ body {
 .dropdown-menu {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  animation: slideDown 0.3s ease-out;
+  margin-top: 500px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .dropdown-menu a {
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 .dropdown-menu a:hover {
-  background-color: #f1f1f1;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  background-color: #ddd;
 }
