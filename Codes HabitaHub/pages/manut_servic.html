@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenção e Solicitações</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/manut_servic.css">
+    <link rel="stylesheet" href="../css/comunic_int.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">HabitaHub</div>
+        <div class="separator"></div>
+        <div class="condo-name">Nome do condomínio</div>
+    </div>
+    <div class="navigation">
+        <div class="nav-left">
+            <img class="icon menu-icon" src="../icons/menu-icon.png" alt="Menu">
+            <div class="dropdown-menu">
+                <a href="comunic_int.html">Comunicação</a>
+                <a href="gest_cobr.html">Cobranças</a>
+                <a href="ctrl_orcamento.html">Orçamento</a>
+                <a href="fluxo_caixa.html">Fluxo de Caixa</a>
+                <a href="reserv_esp.html">Reservas</a>
+                <a href="manut_servic.html">Manutenção</a>
+                <a href="ctrl_acess.html">Acesso</a>
+                <a href="gest_doc.html">Documentos</a>
+                <a href="alert_notif.html">Alertas</a>
+            </div>
+            <img class="icon" src="../icons/home-icon.png" alt="Home">
+            <img class="icon" src="../icons/search-icon.png" alt="Search">
+        </div>
+        <div class="logo">Manutenção e Solicitações</div>
+        <div class="nav-right">
+            <span>Login</span>
+            <img class="icon" src="../icons/logout-icon.png" alt="Logout">
+        </div>
+    </div>
+    <sec class="content_container">
+        <div class="content_row">
+            <div class="filter_content">
+                <div class="maintence_all">
+                    <div class="filter_row">
+                        <div class="maintence_column">
+                            <img src="../icons/menu-icon.png" width=10%>
+                            <form>
+                                <input class="text_filter" type="text" placeholder="Seleção de bloco">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="filter_row">
+                        <div class="maintence_column">
+                            <img src="../icons/search-icon.png" width=10%>
+                            <form>
+                                <input class="text_filter" type="text" placeholder="Seleção de número">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="maintence_row">
+                        <div class="maintence_column">
+                            <div class="border_text_area">
+                                <textarea class="text_area" rows="30"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="maintence_content">
+                <div class="maintence_title">
+                </div>
+
+                <div class="maintence_all">
+                    <div class="maintence_row">
+                        <img src="../icons/filtro-icon.png" height="24px">
+                        <form>
+                            <input class="text_input" type="text" placeholder="Pesquisar data">
+                        </form>
+                    </div>
+                    <div class="maintence_row">
+                        <div class="maintence_column">
+                            <div class="border_column">
+                                <div class="text_row">
+                                    <div class="text_column">
+                                        <label for="data_atual">Data atual:</label>
+                                        <form>
+                                            <input class="input_box" id="data_atual" type="text">
+                                        </form>
+                                    </div>
+                                    <div class="text_column">
+                                        <label for="numero_processo">Número do processo:</label>
+                                        <form>
+                                            <input class="input_box" id="numero_processo" type="text">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="text_row">
+                                    <div class="text_column">
+                                        <label for="descrição">Descrição:</label>
+
+                                    </div>
+                                </div>
+                                <div class="text_row">
+                                    <div class="text_column">
+
+                                        <textarea class="input_box" id="descrição" rows="7" cols="45">
+                                        </textarea>
+                                    </div>
+                                </div>
+                                <div class="text_row">
+                                    <div class="text_column">
+                                        <img src="../icons/arquivo-icon.png" height="24">
+                                    </div>
+                                    <div class="text_column">
+                                        <form>
+                                            <input type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="text_row">
+                                    <div class="text_column">
+                                        <label for="data_inicio">Data de início:</label>
+                                        <form>
+                                            <input class="input_box" id="data_inicio" type="text">
+                                        </form>
+                                    </div>
+                                    <div class="text_column">
+                                        <label for="término">Previsão de término:</label>
+                                        <form>
+                                            <input class="input_box" id="término" type="text">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="maintence_column">
+                            <div class="data_row">
+                                <div class="text_img">
+                                    <img src="../icons/calender-icon.png" width='90%'>
+                                </div>
+                                <div class="text_img">
+                                    <img src="../icons/seta-esq-icon.png" width='10%'>
+                                    <img src="../icons/seta-dir-icon.png" width="10%">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </sec>
+
+    <script src="../js/menu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: url("../imgs/fundo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #333;
+}
+
+.header {
+  background-color: #ffa500;
+  width: 100%;
+  align-items: center;
+  padding: 10px 20px;
+  display: flex;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header .separator {
+  grid-column: 2;
+  height: 100%;
+  width: 3px;
+  margin: 0 20px;
+  background-color: #333;
+}
+
+.header .condo-name {
+  grid-column: 3;
+  font-size: 20px;
+  justify-self: end;
+}
+
+.header .actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .actions img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation {
+  background-color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 53px;
+  height: 53px;
+}
+
+.navigation .logo {
+  font-size: 24px;
+  font-weight: 700;
+
+}
+
+.navigation .nav-left,
+.navigation .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  position: relative;
+}
+
+.navigation button,
+.navigation a {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.navigation button:hover,
+.navigation a:hover {
+  background-color: #555;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 27px 50px;
+  width: 85%;
+  height: 80%;
+  margin: auto;
+}
+
+.section {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.noticias,
+.forum,
+.enquetes,
+.mensagens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.noticia,
+.forum-post,
+.enquete,
+.mensagem {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.noticia,
+.forum-post {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forum-post .comments {
+  background-color: #00f;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.enquete input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #333;
+  padding: 5px;
+  width: 100%;
+}
+
+.mensagens input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.navigation .nav-left .menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  background-color: #ffa500;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  background-color: #ffa500; /* Cor azul */
+  color: #ffffff; /* Cor do texto em branco */
+  padding: 10px 20px; /* Ajuste do espaçamento interno */
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffa500; /* Cor azul */
+  z-index: 1;
+  margin-top: 475px; /* Ajuste da posição do menu */
+  padding: 0; /* Removendo o padding */
+  border-radius: 5px;
+}
+
+.dropdown-menu a {
+  color: #ffffff; /* Cor do texto em branco */
+  padding: 10px 20px; /* Ajuste do espaçamento interno */
+  display: block;
+  transition: background-color 0.3s ease-in-out; /* Transição suave */
+  border-bottom: 1px solid #ddd; /* Adicionando uma linha divisória */
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none; /* Removendo a linha divisória do último item */
+}
+
+.dropdown-menu a:hover {
+  background-color: #ffffff; /* Ajusta a cor de fundo ao passar o mouse */
+  color: #ffa500; /* Ajusta a cor do texto ao passar o mouse */
+}
