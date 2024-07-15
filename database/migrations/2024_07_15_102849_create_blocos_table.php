@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('blocos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_condominio')->references('id')->on('condos');
+            $table->foreignId('condominio_id')->references('id')->on('condominios');
             $table->integer('blocos');
             $table->integer('apartamentos');
             $table->enum('status', ['ativo', 'inativo'])->default('ativo');

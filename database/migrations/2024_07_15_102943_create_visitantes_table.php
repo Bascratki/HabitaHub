@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visitantes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('apartamento_id')->nullable()->references('id')->on('apartamentos');
-            $table->foreignId('condominio_id')->references('id')->on('unidades');
+            $table->foreignId('condominio_id')->references('id')->on('condominios');
             $table->string('nome');
             $table->enum('tipo', ['visitante', 'prestador']);
             $table->enum('documento_tipo', ['cpf', 'rg']);

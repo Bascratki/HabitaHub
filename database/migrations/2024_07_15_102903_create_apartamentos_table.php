@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('apartamentos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->references('id')->on('usuarios');
-            $table->foreignId('id_bloco')->references('id')->on('blocos');
+            $table->foreignId('usuario_id')->references('id')->on('usuarios');
+            $table->foreignId('bloco_id')->references('id')->on('blocos');
             $table->integer('numero');
             $table->integer('andar');
             $table->enum('status', ['ativo', 'inativo'])->default('ativo');
