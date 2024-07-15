@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('funcoes', function (Blueprint $table) {
+        Schema::create('visitantes_detalhes', function (Blueprint $table) {
             $table->id();
-            $table->string('slug')->unique();
-            $table->string('nome');
-            $table->boolean('empresa')->default(false); 
+            $table->foreignId('visitante_id')->references('id')->on('visitantes');
+            $table->date('data_entrada');
+            $table->date('data_saida');
+            $table->string('descrição');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('funcoes');
+        Schema::dropIfExists('visitantes_detalhes');
     }
 };
