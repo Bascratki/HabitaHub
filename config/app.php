@@ -176,6 +176,7 @@ return [
         App\Domain\Authentication\Providers\RouteServiceProvider::class,
         App\Domain\Uploads\Providers\RouteServiceProvider::class,
         App\Domain\Crons\Providers\RouteServiceProvider::class,
+        App\Domain\Empresas\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*
