@@ -4,31 +4,55 @@ namespace App\Domain\Authentication\Controllers;
 
 use App\Domain\Authentication\Services\AuthenticationService;
 use Illuminate\Http\Request;
-use App\Domain\Emails\Entities\Emails;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenticationController
 {
     public function __construct(
         private AuthenticationService $service,
-        private Emails $sendMail,
     ) {
-        $this->sendMail = new Emails();
     }
 
     public function register(Request $request)
     {
-        $user = $this->service->register($request->all());
+        try {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6'
+            ]);
 
-        $token = auth('api')->login($user);
-        return $this->respondWithToken($token);
+
+            $request->merge([
+                'funcao_id' => 1,
+                'password' => Hash::make($request->password)
+            ]);
+
+            $user = $this->service->register($request->all());
+
+            $token = auth('api')->login($user);
+
+            return $this->respondWithToken($token);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function login(Request $request)
     {
-        $token = auth('api')->attempt(['email' => $request->email, 'password' => $request->password]);
+        try { 
+            $request->validate([
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+            $token = auth('api')->attempt($request->only('email', 'password'));
 
-        if (!$token) return response()->json(['error' => 'Usuário e/ou senha inválido(s)'], 400);
-        return $this->respondWithToken($token);
+            if (!$token) throw new \Exception('Usuário e/ou senha inválido(s)');
+
+            return $this->respondWithToken($token);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Usuário e/ou senha inválido(s)'], 400);
+        }
     }
 
 
