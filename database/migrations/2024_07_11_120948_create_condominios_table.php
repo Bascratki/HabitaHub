@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('empresa_id')->references('id')->on('empresas');
             $table->string('nome');
             $table->string('endereco');
-            $table->string('cpnpj');
+            $table->string('cnpj');
             $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();
         });

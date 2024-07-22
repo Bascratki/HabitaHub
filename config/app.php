@@ -177,6 +177,10 @@ return [
         App\Domain\Uploads\Providers\RouteServiceProvider::class,
         App\Domain\Crons\Providers\RouteServiceProvider::class,
         App\Domain\Empresas\Providers\RouteServiceProvider::class,
+        App\Domain\Condominios\Providers\RouteServiceProvider::class,
+        App\Domain\Blocos\Providers\RouteServiceProvider::class,
+        App\Domain\Apartamentos\Providers\RouteServiceProvider::class,
+        App\Domain\Visitantes\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*
