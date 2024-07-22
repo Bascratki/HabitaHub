@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('endereco');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
+            $table->string('senha');
             $table->timestamps();            
+            $table->softDeletes();
         });
     }
 
