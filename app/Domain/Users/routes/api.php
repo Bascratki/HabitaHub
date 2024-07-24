@@ -1,13 +1,13 @@
 <?php
 
-use App\Domain\Users\Controllers\UsersController;
+use App\Domain\Usuarios\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(UsersController::class)
-    ->prefix('users')
+Route::controller(UsuariosController::class)
+    ->prefix('usuarios')
     ->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
-        Route::put('/{userId}', 'update');
+        Route::put('/{usuarioId}', 'update');
         Route::delete('/', 'destroy');
     });

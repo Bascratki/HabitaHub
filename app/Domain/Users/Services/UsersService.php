@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Users\Services;
+namespace App\Domain\Usuarios\Services;
 
-use App\Domain\Users\Entities\User;
+use App\Domain\Usuarios\Entities\Usuario;
 use Illuminate\Database\Eloquent\Collection;
 
-class UsersService
+class UsuariosService
 {
     public function __construct(
-        private User $entity
+        private Usuario $entity
     ) {
     }
 
@@ -17,12 +17,12 @@ class UsersService
         return $this->entity->all();
     }
 
-    public function find($id): ?User
+    public function find($id): ?Usuario
     {
         return $this->entity->find($id);
     }
 
-    public function create(array $data): User
+    public function create(array $data): Usuario
     {
         return $this->entity->create($data);
     }

@@ -2,21 +2,21 @@
 
 namespace App\Domain\Authentication\Services;
 
-use App\Domain\Users\Entities\User;
+use App\Domain\Usuarios\Entities\Usuario;
 
 class AuthenticationService
 {
     public function __construct(
-        private User $entity
+        private Usuario $entity
     ) {
     }
 
-    public function register(array $data): User
+    public function register(array $data): Usuario
     {
         return $this->entity->create($data);
     }
 
-    public function getByEmail($email): ?User
+    public function getByEmail($email): ?Usuario
     {
         return $this->entity->where('email', $email)->first();
     }

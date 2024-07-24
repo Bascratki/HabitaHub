@@ -18,7 +18,7 @@ class AuthenticationController
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'email' => 'required|email|unique:usuarios',
                 'password' => 'required|min:6'
             ]);
 
@@ -28,9 +28,9 @@ class AuthenticationController
                 'password' => Hash::make($request->password)
             ]);
 
-            $user = $this->service->register($request->all());
+            $usuario = $this->service->register($request->all());
 
-            $token = auth('api')->login($user);
+            $token = auth('api')->login($usuario);
 
             return $this->respondWithToken($token);
         } catch (\Exception $e) {
@@ -58,11 +58,11 @@ class AuthenticationController
 
     public function me(Request $request)
     {
-        $user = auth('api')->user();
+        $usuario = auth('api')->usuario();
 
-        if (!$user) return response()->json(['error' => 'Você não está logado'], 400); 
+        if (!$usuario) return response()->json(['error' => 'Você não está logado'], 400); 
 
-        $token = auth('api')->tokenById($user->id);
+        $token = auth('api')->tokenById($usuario->id);
         return $this->respondWithToken($token);
     }
 
@@ -80,23 +80,23 @@ class AuthenticationController
 
     protected function respondWithToken($token)
     {
-        $user = auth('api')->user();
+        $usuario = auth('api')->usuario();
         $abi = [
             ['action' => 'manage', 'subject' => 'all']
         ];
 
-        $dadosuser = [
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email,
-            'photo' => $user->photo,
+        $dadosusuario = [
+            'id' => $usuario->id,
+            'name' => $usuario->name,
+            'email' => $usuario->email,
+            'photo' => $usuario->photo,
             'role' => 'admin',
             'ability' => $abi,
-            'avatar' => 'https://ui-avatars.com/api/?name=' . str_replace(' ', '', $user->name) . '&color=7F9CF5&background=EBF4FF',
+            'avatar' => 'https://ui-avatars.com/api/?name=' . str_replace(' ', '', $usuario->name) . '&color=7F9CF5&background=EBF4FF',
         ];
 
         return [
-            'userData' => $dadosuser,
+            'usuarioData' => $dadosusuario,
             'accessToken' => $token,
             'refreshToken' => $token,
             'expires_in' => auth('api')->factory()->getTTL() * 2400

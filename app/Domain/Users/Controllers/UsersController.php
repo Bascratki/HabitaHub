@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Domain\Users\Controllers;
+namespace App\Domain\Usuarios\Controllers;
 
-use App\Domain\Users\Services\UsersService;
+use App\Domain\Usuarios\Services\UsuariosService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
-class UsersController extends Controller
+class UsuariosController extends Controller
 {
     public function __construct(
-        private UsersService $service
+        private UsuariosService $service
     ) {
     }
 
@@ -53,7 +53,7 @@ class UsersController extends Controller
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
+                'email' => 'required|string|email|max:255|unique:usuarios',
                 'password' => 'required|string',
             ]);
 
@@ -91,14 +91,14 @@ class UsersController extends Controller
     public function destroy(Request $request): JsonResponse
     {
         try {
-            $user = auth('api')->user();
-            if (!Hash::check($request->password, $user->password)) {
+            $usuario = auth('api')->usuario();
+            if (!Hash::check($request->password, $usuario->password)) {
                 return response()->json([
                     'error' => 'Senha incorreta!'
                 ], Response::HTTP_BAD_REQUEST);
             }
 
-            $this->service->delete($user->id);
+            $this->service->delete($usuario->id);
 
             return response()->json([
                 'success' => 'Seu conta foi deletada com sucesso!'

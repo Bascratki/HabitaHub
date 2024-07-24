@@ -25,7 +25,7 @@
 
     <a href="{{ $url }}">{{ $url }}</a>
 
-    <p>Este link de recuperação de senha expirará em {{ config('auth.passwords.users.expire') }} minutos.</p>
+    <p>Este link de recuperação de senha expirará em {{ config('auth.passwords.usuarios.expire') }} minutos.</p>
 
     <p>Atenciosamente,<br>Recuperação de Senha</p>
 </body>
