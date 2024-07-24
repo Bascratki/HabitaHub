@@ -76,7 +76,7 @@ return [
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'usuarioname' => 'Laravel Log',
+            'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => env('LOG_LEVEL', 'critical'),
             'replace_placeholders' => true,
@@ -108,7 +108,7 @@ return [
         'syslog' => [
             'driver' => 'syslog',
             'level' => env('LOG_LEVEL', 'debug'),
-            'facility' => LOG_USUARIO,
+            'facility' => LOG_USER,
             'replace_placeholders' => true,
         ],
 

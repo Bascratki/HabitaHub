@@ -172,7 +172,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         //DOMAINS
-        App\Domain\Usuarios\Providers\RouteServiceProvider::class,
+        App\Domain\Users\Providers\RouteServiceProvider::class,
         App\Domain\Authentication\Providers\RouteServiceProvider::class,
         App\Domain\Uploads\Providers\RouteServiceProvider::class,
         App\Domain\Crons\Providers\RouteServiceProvider::class,
