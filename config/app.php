@@ -176,11 +176,11 @@ return [
         App\Domain\Authentication\Providers\RouteServiceProvider::class,
         App\Domain\Uploads\Providers\RouteServiceProvider::class,
         App\Domain\Crons\Providers\RouteServiceProvider::class,
-        App\Domain\Empresas\Providers\RouteServiceProvider::class,
-        App\Domain\Condominios\Providers\RouteServiceProvider::class,
-        App\Domain\Blocos\Providers\RouteServiceProvider::class,
-        App\Domain\Apartamentos\Providers\RouteServiceProvider::class,
-        App\Domain\Visitantes\Providers\RouteServiceProvider::class,
+        App\Domain\Companies\Providers\RouteServiceProvider::class,
+        App\Domain\Condominiums\Providers\RouteServiceProvider::class,
+        App\Domain\Blocks\Providers\RouteServiceProvider::class,
+        App\Domain\Apartments\Providers\RouteServiceProvider::class,
+        App\Domain\Visitors\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*
