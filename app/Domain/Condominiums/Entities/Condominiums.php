@@ -15,9 +15,11 @@ class Condominiums extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nome',
-        'endereco',
-        'status',
+        'company_id',
+        'name',
+        'address',
+        'cnpj',
+        'status'
     ];
 
 }

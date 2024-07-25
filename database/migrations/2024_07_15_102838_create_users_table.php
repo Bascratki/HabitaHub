@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('role_id')->references('id')->on('roles');
             $table->string('name');
             $table->string('phone');
-            $table->string('adedress');
+            $table->string('address');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
             $table->string('password');

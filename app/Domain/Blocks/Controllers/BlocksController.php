@@ -36,8 +36,10 @@ class BlocksController extends Controller
     {
         try {
             $request->validate([
-                'blocks' => 'required|string',
-                'apartments' => 'required|string',
+                'condominium_id' => 'required|integer',
+                'blocks' => 'required|string|max:255',
+                'apartments' => 'required|string|max:255',
+                'status' => 'required|string|max:255'
             ]);
             
             $data = $request->all();
@@ -53,4 +55,39 @@ class BlocksController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function update(Request $request, int $id): JsonResponse
+    {
+        try {
+
+            $data = $request->all();
+
+            $this->service->update($id, $data);
+
+            return response()->json([
+                'message' => 'Block updated successfully'
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function delete(int $id): JsonResponse
+    {
+        try {
+
+            $this->service->delete($id);
+
+            return response()->json([
+                'message' => 'Block deleted successfully'
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }

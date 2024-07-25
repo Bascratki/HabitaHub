@@ -36,11 +36,12 @@ class ApartmentsController extends Controller
     {
         try {
             $request->validate([
-                'numero' => 'required',
-                'andar' => 'required',
-                'status' => 'required',
+                'block_id' => 'required|integer',
+                'number' => 'required|string|max:255',
+                'floor' => 'required|string|max:255',
+                'status' => 'required|string|max:255'
             ]);
-            
+
             $data = $request->all();
 
             $this->service->create($data);

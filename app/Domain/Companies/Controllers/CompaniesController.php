@@ -36,10 +36,11 @@ class CompaniesController extends Controller
     {
         try {
             $request->validate([
-                'nome' => 'required|string',
-                'cnpj' => 'required|string',
-                'email' => 'required|email',
-                'password' => 'required|string',
+                'name' => 'required|string|max:255',
+                'phone' => 'required|string|max:255',
+                'email' => 'required|string|max:255',
+                'cnpj' => 'required|string|max:255',
+                'status' => 'required|string|max:255'
             ]);
             
             $data = $request->all();

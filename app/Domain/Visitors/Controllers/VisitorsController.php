@@ -36,10 +36,13 @@ class VisitorsController extends Controller
     {
         try {
             $request->validate([
-                'nome' => 'required|string',
-                'tipo' => 'required|string',
-                'documento_tipo' => 'required|string',
-                'documento_numero' => 'required|string',
+                'apartment_id' => 'required|integer',
+                'condominium_id' => 'required|integer',
+                'name' => 'required|string|max:255',
+                'type' => 'required|string|max:255',
+                'document_type' => 'required|string|max:255',
+                'document_number' => 'required|string|max:255',
+                'status' => 'required|string|masx:255'
             ]);
             
             $data = $request->all();

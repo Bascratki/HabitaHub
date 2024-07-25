@@ -15,9 +15,11 @@ class Apartments extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'numero',
-        'andar',
-        'status',
+        'user_id',
+        'block_id',
+        'number',
+        'floor',
+        'status'        
     ];
 
 }

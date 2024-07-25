@@ -15,11 +15,13 @@ class Visitors extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nome',
-        'tipo',
-        'documento_tipo',
-        'documento_numero',
-
+        'apartment_id',
+        'condominium_id',
+        'name',
+        'type',
+        'document_type',
+        'document_number',
+        'status'
     ];
 
 }

@@ -36,9 +36,11 @@ class CondominiumsController extends Controller
     {
         try {
             $request->validate([
-                'nome' => 'required|string',
-                'endereco' => 'required|string',
-                'status' => 'required|string',
+                'company_id' => 'required|integer',
+                'name' => 'required|string|max:255',
+                'address' => 'required|string|max:255',
+                'cnpj' => 'required|string|max:255',
+                'status' => 'required|string|max:255'
             ]);
             
             $data = $request->all();

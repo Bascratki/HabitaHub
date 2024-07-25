@@ -15,8 +15,10 @@ class Blocks extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'condominium_id',
         'blocks',
         'apartments',
+        'status'   
     ];
 
 }

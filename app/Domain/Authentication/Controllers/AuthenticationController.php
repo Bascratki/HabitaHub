@@ -22,9 +22,8 @@ class AuthenticationController
                 'password' => 'required|min:6'
             ]);
 
-
             $request->merge([
-                'funcao_id' => 1,
+                'role_id' => 1,
                 'password' => Hash::make($request->password)
             ]);
 
