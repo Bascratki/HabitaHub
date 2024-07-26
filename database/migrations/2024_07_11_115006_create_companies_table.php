@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('cnpj')->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();

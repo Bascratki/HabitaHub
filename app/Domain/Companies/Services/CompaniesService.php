@@ -36,4 +36,9 @@ class CompaniesService
     {
         return $this->entity->find($id)->delete();
     }
+
+    public function findByCnpj($cnpj): bool
+    {
+        return $this->entity->where('cnpj', $cnpj)->exists();
+    }
 }

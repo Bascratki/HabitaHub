@@ -23,7 +23,24 @@ class CompaniesController extends Controller
             $data = $this->service->all();
 
             return response()->json([
-                'data' => $data
+                'data' => $data,
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show(int $id): JsonResponse
+    {
+        try {
+            $data = $this->service->find($id);
+
+            if (!$data) throw new \Exception('Empresa não encontrada');
+
+            return response()->json([
+                'data' => $data,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -36,20 +53,55 @@ class CompaniesController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|string|max:255',
-                'phone' => 'required|string|max:255',
-                'email' => 'required|string|max:255',
-                'cnpj' => 'required|string|max:255',
-                'status' => 'required|string|max:255'
+                'name' => 'required|string',
+                'phone' => 'required|string',
+                'email' => 'required|string',
+                'cnpj' => 'required|string',
             ]);
             
             $data = $request->all();
 
+            $verifyCnpj = $this->service->findByCnpj($data['cnpj']);
+        
+            if ($verifyCnpj) throw new \Exception('CNPJ já cadastrado');
+
             $this->service->create($data);
 
             return response()->json([
-                'message' => 'Empresa cadastrada com sucesso'
+                'success' => 'Empresa cadastrada com sucesso'
             ], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function update(Request $request, int $id): JsonResponse
+    {
+        try {
+            $data = $request->all();
+
+            $company = $this->service->update($id, $data);
+
+            return response()->json([
+                'success' => 'Empresa atualizada com sucesso',
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        try {
+            $this->service->delete($id);
+
+            return response()->json([
+                'success' => 'Empresa deletada com sucesso',
+            ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
