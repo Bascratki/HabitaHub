@@ -19,7 +19,6 @@ class Condominiums extends Model
         'name',
         'address',
         'cnpj',
-        'status'
     ];
 
 }

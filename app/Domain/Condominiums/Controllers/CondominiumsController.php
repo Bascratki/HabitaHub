@@ -37,22 +37,76 @@ class CondominiumsController extends Controller
         try {
             $request->validate([
                 'company_id' => 'required|integer',
-                'name' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'cnpj' => 'required|string|max:255',
-                'status' => 'required|string|max:255'
+                'name' => 'required|string',
+                'address' => 'required|string',
+                'cnpj' => 'required|string',
             ]);
             
             $data = $request->all();
+            
+            $verificaCnpj = $this->service->findByCnpj($data['cnpj']);
+
+            if($verificaCnpj) throw new \Exception ('CPNJ já cadastrado');
 
             $this->service->create($data);
 
             return response()->json([
-                'message' => 'Condominium successfully registered'
+                'success' => 'Condomínio cadastrado com suceso'
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show (int $id): JsonResponse
+    {
+        try {
+            $data = $this->service->find($id);
+
+            if (!$data) throw new \Exception('Condomínio não encontrado');
+
+            return response()->json([
+                'data' => $data
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function update(Request $request, int $id): JsonResponse
+    {
+        try {
+            $data = $request->all();
+
+            $condominium = $this->service->update($id, $data);
+
+            if (!$condominium) throw new \Exception('Condomínio não encontrado');
+
+            return response()->json([
+                'success' => 'Empresa atualizada com suceso',
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function destroy(int $id): JsonResponse
+    {
+        try {
+            $this->service->delete($id);
+
+            return response()->json([
+                'success' => 'Condomínio deletado com sucesso'
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' =>$e->getMessage()
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

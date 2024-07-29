@@ -31,24 +31,7 @@ class CompaniesController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
-    public function show(int $id): JsonResponse
-    {
-        try {
-            $data = $this->service->find($id);
-
-            if (!$data) throw new \Exception('Empresa não encontrada');
-
-            return response()->json([
-                'data' => $data,
-            ], Response::HTTP_OK);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-
+    
     public function store(Request $request): JsonResponse
     {
         try {
@@ -76,6 +59,24 @@ class CompaniesController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
+    public function show(int $id): JsonResponse
+    {
+        try {
+            $data = $this->service->find($id);
+
+            if (!$data) throw new \Exception('Empresa não encontrada');
+
+            return response()->json([
+                'data' => $data,
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     public function update(Request $request, int $id): JsonResponse
     {

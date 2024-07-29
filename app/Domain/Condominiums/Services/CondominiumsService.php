@@ -36,4 +36,9 @@ class CondominiumsService
     {
         return $this->entity->find($id)->delete();
     }
+
+    public function findbyCnpj($cnpj):bool
+    {
+        return $this->entity->where('cnpj', $cnpj)->exists();
+    }
 }
