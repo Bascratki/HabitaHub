@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('condominium_id')->references('id')->on('condominiums');
-            $table->integer('blocks');
-            $table->integer('apartments');
+            $table->integer('num_block');
+            $table->integer('num_apartments');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();

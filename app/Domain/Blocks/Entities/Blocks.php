@@ -16,9 +16,8 @@ class Blocks extends Model
      */
     protected $fillable = [
         'condominium_id',
-        'blocks',
-        'apartments',
-        'status'   
+        'num_block',
+        'num_apartments',
     ];
 
 }

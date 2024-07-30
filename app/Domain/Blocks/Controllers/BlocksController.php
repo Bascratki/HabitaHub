@@ -37,9 +37,8 @@ class BlocksController extends Controller
         try {
             $request->validate([
                 'condominium_id' => 'required|integer',
-                'blocks' => 'required|string|max:255',
-                'apartments' => 'required|string|max:255',
-                'status' => 'required|string|max:255'
+                'num_block' => 'required|integer',
+                'num_apartments' => 'required|integer',
             ]);
             
             $data = $request->all();
@@ -47,8 +46,24 @@ class BlocksController extends Controller
             $this->service->create($data);
 
             return response()->json([
-                'message' => 'Block registered successfully'
+                'message' => 'Bloco cadastrado com sucesso'
             ], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show($id): JsonResponse
+    {
+        try {
+
+            $data = $this->service->find($id);
+
+            return response()->json([
+                'data' => $data
+            ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
@@ -65,7 +80,7 @@ class BlocksController extends Controller
             $this->service->update($id, $data);
 
             return response()->json([
-                'message' => 'Block updated successfully'
+                'message' => 'Bloco atualizado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -81,7 +96,7 @@ class BlocksController extends Controller
             $this->service->delete($id);
 
             return response()->json([
-                'message' => 'Block deleted successfully'
+                'message' => 'Bloco deletado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
