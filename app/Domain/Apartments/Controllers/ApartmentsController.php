@@ -36,10 +36,10 @@ class ApartmentsController extends Controller
     {
         try {
             $request->validate([
+                'user_id' => 'required|integer',
                 'block_id' => 'required|integer',
-                'number' => 'required|string|max:255',
-                'floor' => 'required|string|max:255',
-                'status' => 'required|string|max:255'
+                'number' => 'required|integer',
+                'floor' => 'required|integer',
             ]);
 
             $data = $request->all();
@@ -47,8 +47,68 @@ class ApartmentsController extends Controller
             $this->service->create($data);
 
             return response()->json([
-                'message' => 'Apartment successfully registered'
+                'message' => 'Apartamento criado com sucesso'
             ], Response::HTTP_CREATED);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function show($id): JsonResponse
+    {
+        try {
+            $data = $this->service->find($id);
+
+            if (!$data) {
+                return response()->json([
+                    'message' => 'Apartamento não encontrado'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            return response()->json([
+                'data' => $data
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function update(Request $request, $id): JsonResponse
+    {
+        try {
+            $request->validate([
+                'user_id' => 'required|integer',
+                'block_id' => 'required|integer',
+                'number' => 'required|integer',
+                'floor' => 'required|integer',
+            ]);
+
+            $data = $request->all();
+
+            $this->service->update($id, $data);
+
+            return response()->json([
+                'message' => 'Apartamento atualizado com sucesso'
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function delete($id): JsonResponse
+    {
+        try {
+            $this->service->delete($id);
+
+            return response()->json([
+            'message' => 'Apartamento deletado com sucesso'
+            ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
