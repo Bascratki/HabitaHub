@@ -96,7 +96,7 @@ class CondominiumsController extends Controller
         }
     }
 
-    public function destroy(int $id): JsonResponse
+    public function delete(int $id): JsonResponse
     {
         try {
             $this->service->delete($id);

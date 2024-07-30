@@ -8,6 +8,7 @@ Route::controller(UsersController::class)
     ->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
+        Route::get('/{userId}', 'show');
         Route::put('/{userId}', 'update');
-        Route::delete('/', 'destroy');
+        Route::delete('/{userId}', 'delete');
     });

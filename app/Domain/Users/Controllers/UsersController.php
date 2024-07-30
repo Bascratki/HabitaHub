@@ -32,22 +32,6 @@ class UsersController extends Controller
         }
     }
 
-    public function show($id): JsonResponse
-    {
-        try {
-
-            $data = $this->service->find($id);
-
-            return response()->json([
-                'data' => $data
-            ], Response::HTTP_OK);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
-
     public function store(Request $request): JsonResponse
     {
         try {
@@ -76,6 +60,23 @@ class UsersController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
+    public function show($id): JsonResponse
+    {
+        try {
+
+            $data = $this->service->find($id);
+
+            return response()->json([
+                'data' => $data
+            ], Response::HTTP_OK);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     public function update(Request $request, $id): JsonResponse
     {
@@ -92,20 +93,14 @@ class UsersController extends Controller
         }
     }
 
-    public function destroy(Request $request): JsonResponse
+    public function delete(int $id): JsonResponse
     {
         try {
-            $user = auth('api')->user();
-            if (!Hash::check($request->password, $user->password)) {
-                return response()->json([
-                    'error' => 'Senha incorreta!'
-                ], Response::HTTP_BAD_REQUEST);
-            }
-
-            $this->service->delete($user->id);
+    
+            $this->service->delete($id);
 
             return response()->json([
-                'success' => 'Seu conta foi deletada com sucesso!'
+                'success' => 'Usuário deletado com sucesso!'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([

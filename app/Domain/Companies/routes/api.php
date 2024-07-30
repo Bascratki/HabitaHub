@@ -7,8 +7,8 @@ Route::controller(CompaniesController::class)
     ->prefix('companies')
     ->group(function () {
         Route::get('/', 'index');
-        Route::get('/{id}', 'show');
         Route::post('/', 'store');
+        Route::get('/{id}', 'show');
         Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
+        Route::delete('/{id}', 'delete');
     });
