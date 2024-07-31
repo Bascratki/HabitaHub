@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('name');
-            $table->boolean('company')->default(false); 
+            $table->boolean('is_company')->default(false); 
             $table->timestamps();
         });
     }

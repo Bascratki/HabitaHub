@@ -67,6 +67,8 @@ class UsersController extends Controller
 
             $data = $this->service->find($id);
 
+            if (!$data) throw new \Exception('Usuário não encontrado');
+
             return response()->json([
                 'data' => $data
             ], Response::HTTP_OK);
@@ -81,7 +83,7 @@ class UsersController extends Controller
     public function update(Request $request, $id): JsonResponse
     {
         try {
-            $data = $this->service->update($id, $request->all());
+            $this->service->update($id, $request->all());
 
             return response()->json([
                 'success' => 'Usuário atualizado com sucesso!',
@@ -96,8 +98,9 @@ class UsersController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-    
-            $this->service->delete($id);
+            $data = $this->service->delete($id);
+
+            if (!$data) throw new \Exception('Usuário não encontrado');
 
             return response()->json([
                 'success' => 'Usuário deletado com sucesso!'

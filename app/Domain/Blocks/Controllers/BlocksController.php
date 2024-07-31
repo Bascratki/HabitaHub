@@ -61,6 +61,8 @@ class BlocksController extends Controller
 
             $data = $this->service->find($id);
 
+            if (!$data) throw new \Exception('Bloco não encontrado');
+
             return response()->json([
                 'data' => $data
             ], Response::HTTP_OK);
@@ -74,10 +76,7 @@ class BlocksController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-
-            $data = $request->all();
-
-            $this->service->update($id, $data);
+            $this->service->update($id, $request->all());
 
             return response()->json([
                 'message' => 'Bloco atualizado com sucesso'
@@ -92,8 +91,9 @@ class BlocksController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
+            $$data = $this->service->delete($id);
 
-            $this->service->delete($id);
+            if (!$data) throw new \Exception('Bloco não encontrado');
 
             return response()->json([
                 'message' => 'Bloco deletado com sucesso'

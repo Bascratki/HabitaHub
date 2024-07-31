@@ -61,12 +61,8 @@ class ApartmentsController extends Controller
         try {
             $data = $this->service->find($id);
 
-            if (!$data) {
-                return response()->json([
-                    'message' => 'Apartamento não encontrado'
-                ], Response::HTTP_NOT_FOUND);
-            }
-
+            if (!$data) throw new \Exception('Apartamento não encontrado');
+            
             return response()->json([
                 'data' => $data
             ], Response::HTTP_OK);
@@ -80,16 +76,7 @@ class ApartmentsController extends Controller
     public function update(Request $request, $id): JsonResponse
     {
         try {
-            $request->validate([
-                'user_id' => 'required|integer',
-                'block_id' => 'required|integer',
-                'number' => 'required|integer',
-                'floor' => 'required|integer',
-            ]);
-
-            $data = $request->all();
-
-            $this->service->update($id, $data);
+            $this->service->update($id, $request->all());
 
             return response()->json([
                 'message' => 'Apartamento atualizado com sucesso'
@@ -104,7 +91,9 @@ class ApartmentsController extends Controller
     public function delete($id): JsonResponse
     {
         try {
-            $this->service->delete($id);
+            $data = $this->service->delete($id);
+
+            if (!$data) throw new \Exception('Apartamento não encontrado');
 
             return response()->json([
             'message' => 'Apartamento deletado com sucesso'

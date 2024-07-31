@@ -81,9 +81,7 @@ class CompaniesController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $data = $request->all();
-
-            $company = $this->service->update($id, $data);
+            $this->service->update($id, $request->all());
 
             return response()->json([
                 'success' => 'Empresa atualizada com sucesso',
@@ -98,7 +96,9 @@ class CompaniesController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $this->service->delete($id);
+            $data = $this->service->delete($id);
+
+            if (!$data) throw new \Exception('Empresa não encontrada');
 
             return response()->json([
                 'success' => 'Empresa deletada com sucesso',

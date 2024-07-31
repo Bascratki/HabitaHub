@@ -80,11 +80,7 @@ class CondominiumsController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $data = $request->all();
-
-            $condominium = $this->service->update($id, $data);
-
-            if (!$condominium) throw new \Exception('Condomínio não encontrado');
+            $this->service->update($id, $request->all());
 
             return response()->json([
                 'success' => 'Empresa atualizada com suceso',
@@ -99,7 +95,9 @@ class CondominiumsController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $this->service->delete($id);
+            $data = $this->service->delete($id);
+
+            if (!$data) throw new \Exception('Condomínio não encontrado');
 
             return response()->json([
                 'success' => 'Condomínio deletado com sucesso'
