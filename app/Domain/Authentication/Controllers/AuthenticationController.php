@@ -18,7 +18,8 @@ class AuthenticationController
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required|email|unique:users',
+                'cpf' => 'required|string',
+                'email' => 'required|string',
                 'password' => 'required|min:4',
             ]);
 
@@ -26,6 +27,10 @@ class AuthenticationController
                 'role_id' => 1,
                 'password' => Hash::make($request->password)
             ]);
+
+            $verify = $this->service->getByCpf($request->cpf);
+            
+            if ($verify) throw new \Exception('CPF já cadastrado');
 
             $user = $this->service->register($request->all());
 
@@ -41,10 +46,10 @@ class AuthenticationController
     {
         try { 
             $request->validate([
-                'email' => 'required',
+                'cpf' => 'required',
                 'password' => 'required'
             ]);
-            $token = auth('api')->attempt($request->only('email', 'password'));
+            $token = auth('api')->attempt($request->only('cpf', 'password'));
 
             if (!$token) throw new \Exception('Usuário e/ou senha inválido(s)');
 
@@ -90,6 +95,7 @@ class AuthenticationController
             'email' => $user->email,
             'photo' => $user->photo,
             'role' => 'admin',
+            'cpf' => $user->cpf,
             'ability' => $abi,
             'avatar' => 'https://ui-avatars.com/api/?name=' . str_replace(' ', '', $user->name) . '&color=7F9CF5&background=EBF4FF',
         ];

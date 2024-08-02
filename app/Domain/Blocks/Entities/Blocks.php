@@ -19,5 +19,10 @@ class Blocks extends Model
         'num_block',
         'num_apartments',
     ];
+    
+    public function condominium()
+    {
+        return $this->belongsTo('App\Domain\Condominiums\Entities\Condominiums');
+    }
 
 }

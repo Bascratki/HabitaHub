@@ -36,13 +36,13 @@ class UsersController extends Controller
     {
         try {
             $request->validate([
-                'role_id' => 'required|exists:roles,id',
-                'name' => 'required|string|max:255',
-                'phone' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'cpf' => 'required|string|max:255|unique:users',
-                'password' => 'required|string|min:8',
+                'role_id' => 'required|integer',
+                'name' => 'required|string',
+                'phone' => 'required|string',
+                'address' => 'required|string',
+                'email' => 'required|string',
+                'cpf' => 'required|string',
+                'password' => 'required|string',
             ]);
 
             $request->merge([

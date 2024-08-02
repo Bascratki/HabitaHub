@@ -64,7 +64,7 @@ class BlocksController extends Controller
             if (!$data) throw new \Exception('Bloco não encontrado');
 
             return response()->json([
-                'data' => $data
+                'data' => $data,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -91,7 +91,7 @@ class BlocksController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $$data = $this->service->delete($id);
+            $data = $this->service->delete($id);
 
             if (!$data) throw new \Exception('Bloco não encontrado');
 

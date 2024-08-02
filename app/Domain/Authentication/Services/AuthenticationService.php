@@ -20,4 +20,9 @@ class AuthenticationService
     {
         return $this->entity->where('email', $email)->first();
     }
+
+    public function getByCpf($cpf): ?User
+    {
+        return $this->entity->where('cpf', $cpf)->first();
+    }
 }

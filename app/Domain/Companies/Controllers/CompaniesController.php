@@ -77,11 +77,25 @@ class CompaniesController extends Controller
         }
     }
 
-
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $this->service->update($id, $request->all());
+            $request->validate([
+                'name' => 'required|string',
+                'phone' => 'required|string',
+                'email' => 'required|string',
+            ]);
+            
+            $company = $this->service->find($id);
+
+            if (!$company) throw new \Exception('Empresa não encontrada');
+
+            $this->service->update($id, $request->only(
+                'name',
+                'phone',
+                'email',
+                'status'
+            ));
 
             return response()->json([
                 'success' => 'Empresa atualizada com sucesso',
