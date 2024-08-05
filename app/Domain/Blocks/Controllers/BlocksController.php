@@ -76,10 +76,24 @@ class BlocksController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $this->service->update($id, $request->all());
+            $request->validate([
+                'condominium_id' => 'required|integer',
+                'num_block' => 'required|integer',
+                'num_apartments' => 'required|integer',
+            ]);
+
+            $block = $this->service->find($id);
+
+            if (!$block) throw new \Exception('Bloco não encontrado');
+
+            $this->service->update($id, $request->only(
+                'condominium_id',
+                'num_block',
+                'num_apartments',
+            ));
 
             return response()->json([
-                'message' => 'Bloco atualizado com sucesso'
+                'success' => 'Bloco atualizado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -91,12 +105,14 @@ class BlocksController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $data = $this->service->delete($id);
+            $block - $this->service->find($id);
 
-            if (!$data) throw new \Exception('Bloco não encontrado');
+            if (!$block) throw new \Exception('Bloco não encontrado');
 
+            $this->service->delete($id);
+            
             return response()->json([
-                'message' => 'Bloco deletado com sucesso'
+                'success' => 'Bloco deletado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([

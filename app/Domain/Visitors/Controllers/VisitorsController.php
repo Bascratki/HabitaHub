@@ -86,13 +86,43 @@ class VisitorsController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $data = $this->service->update($id, $request->all());
+            $request->validate([
+                'apartment_id' => 'required|integer',
+                'condominium_id' => 'required|integer',
+                'name' => 'required|string',
+                'type' => 'required|string',
+            ]);
 
-            if (!$data) throw new \Exception('Visitante não encontrado');
+            $visitor = $this->service->find($id);
 
+            if (!$visitor) throw new \Exception('Visitante não encontrado');
+
+            if ($request->type === 'visitor') {
+                $visitor = $this->service->update($id, $request->only(
+                    'apartment_id',
+                    'condominium_id',
+                    'name',
+                    'type'
+                ));
+            
+                return response()->json([
+                    'success' => 'Visitante atualizado com sucesso'
+                ], Response::HTTP_OK);
+            } elseif ($request->type === 'provider') {
+                $visitor = $this->service->update($id, $request->only(
+                    'apartment_id',
+                    'condominium_id',
+                    'name',
+                    'type'
+                ));
+            
+                return response()->json([
+                    'success' => 'Fornecedor atualizado com sucesso'
+                ], Response::HTTP_OK);
+            }
             return response()->json([
-                'message' => 'Visitante atualizado com sucesso'
-            ], Response::HTTP_OK);
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()
@@ -103,13 +133,23 @@ class VisitorsController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $data = $this->service->delete($id);
+            $visitor = $this->service->find($id);
 
-            if (!$data) throw new \Exception('Visitante não encontrado');
+            if (!$visitor) throw new \Exception('Visitante não encontrado');
 
-            return response()->json([
-                'message' => 'Visitante deletado com sucesso'
-            ], Response::HTTP_OK);
+            if ($visitor->type === 'visitor') {
+                $this->service->delete($id);
+
+                return response()->json([
+                    'success' => 'Visitante deletado com sucesso'
+                ], Response::HTTP_OK);
+            } elseif ($visitor->type === 'provider') {
+                $this->service->delete($id);
+
+                return response()->json([
+                    'success' => 'Fornecedor deletado com sucesso'
+                ], Response::HTTP_OK);
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage()

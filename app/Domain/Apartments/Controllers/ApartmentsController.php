@@ -76,10 +76,26 @@ class ApartmentsController extends Controller
     public function update(Request $request, $id): JsonResponse
     {
         try {
-            $this->service->update($id, $request->all());
+            $request->validate([
+                'user_id' => 'required|integer',
+                'block_id' => 'required|integer',
+                'number' => 'required|integer',
+                'floor' => 'required|integer',
+            ]);
+
+            $apartment = $this->service->find($id);
+
+            if (!$apartment) throw new \Exception('Apartamento não encontrado');
+
+            $this->service->update($id, $request->only(
+                'user_id',
+                'block_id',
+                'number',
+                'floor'
+            ));
 
             return response()->json([
-                'message' => 'Apartamento atualizado com sucesso'
+                'success' => 'Apartamento atualizado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([

@@ -80,10 +80,24 @@ class CondominiumsController extends Controller
     public function update(Request $request, int $id): JsonResponse
     {
         try {
-            $this->service->update($id, $request->all());
+            $request->validate([
+                'company_id' => 'required|integer',
+                'name' => 'required|string',
+                'address' => 'required|string',
+            ]);
+
+            $condominium = $this->service->find($id);
+
+            if (!$condominium) throw new \Exception('Condomínio não encontrado');
+
+            $this->service->update($id, $request->only(
+                'company_id',
+                'name',
+                'address',
+            ));
 
             return response()->json([
-                'success' => 'Empresa atualizada com suceso',
+                'success' => 'Condomínio atualizado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -95,9 +109,11 @@ class CondominiumsController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $data = $this->service->delete($id);
+            $condominium = $this->service->find($id);
 
-            if (!$data) throw new \Exception('Condomínio não encontrado');
+            if (!$$condominium) throw new \Exception('Condomínio não encontrado');
+
+            $this->service->delete($id);
 
             return response()->json([
                 'success' => 'Condomínio deletado com sucesso'

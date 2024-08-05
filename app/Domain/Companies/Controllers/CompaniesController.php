@@ -84,8 +84,9 @@ class CompaniesController extends Controller
                 'name' => 'required|string',
                 'phone' => 'required|string',
                 'email' => 'required|string',
+                'status' => 'required|sttring'
             ]);
-            
+
             $company = $this->service->find($id);
 
             if (!$company) throw new \Exception('Empresa não encontrada');
@@ -110,9 +111,11 @@ class CompaniesController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $data = $this->service->delete($id);
+            $company = $this->service->find($id);
+            
+            if (!$company) throw new \Exception ('Empresa não encontrada');
 
-            if (!$data) throw new \Exception('Empresa não encontrada');
+            $this->service->delete($id);
 
             return response()->json([
                 'success' => 'Empresa deletada com sucesso',
