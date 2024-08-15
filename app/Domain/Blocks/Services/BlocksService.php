@@ -36,4 +36,9 @@ class BlocksService
     {
         return $this->entity->find($id)->delete();
     }
+
+    public function findByBlockAndCondominium($num_block, $condominium_id): ?Blocks
+    {
+        return $this->entity->where('num_block', $num_block)->where('condominium_id', $condominium_id)->first();
+    }
 }

@@ -19,11 +19,10 @@ class UsersController extends Controller
     public function index(): JsonResponse
     {
         try {
-
-            $data = $this->service->all();
+            $user = $this->service->all();
 
             return response()->json([
-                'data' => $data
+                'users' => $user
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -49,10 +48,16 @@ class UsersController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
-            $data = $this->service->create($request->all());
+            $user = $request->all();
+
+            $verificaCpf = $this->service->findByCpf($user['cpf']);
+
+            if($verificaCpf) throw new \Exception ('CPF já cadastrado');
+
+            $this->service->create($user);
 
             return response()->json([
-                'data' => $data
+                'success' => $user
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json([
@@ -64,13 +69,12 @@ class UsersController extends Controller
     public function show($id): JsonResponse
     {
         try {
+            $user = $this->service->find($id);
 
-            $data = $this->service->find($id);
-
-            if (!$data) throw new \Exception('Usuário não encontrado');
+            if (!$user) throw new \Exception('Usuário não encontrado');
 
             return response()->json([
-                'data' => $data
+                'user' => $user
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -98,7 +102,7 @@ class UsersController extends Controller
 
             $user = $this->service->find($id);
 
-            if (!$data) throw new \Exception ('Usuário não encontrado');
+            if (!$user) throw new \Exception ('Usuário não encontrado');
 
             $this->service->update($id, $request->only(
                 'role_id',
@@ -124,12 +128,10 @@ class UsersController extends Controller
         try {
             $user = $this->service->find($id);
 
-            if (!$data) throw new \Exception ('Usuário não encontrado');
+            if (!$user) throw new \Exception ('Usuário não encontrado');
 
             $this->service->delete($id);
-
-            $this->service->delete($id);
-
+            
             return response()->json([
                 'success' => 'Usuário deletado com sucesso'
             ], Response::HTTP_OK);

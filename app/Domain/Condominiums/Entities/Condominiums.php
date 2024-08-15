@@ -18,7 +18,7 @@ class Condominiums extends Model
         'company_id',
         'name',
         'address',
-        'cnpj',
+        'cep',
     ];
 
 }

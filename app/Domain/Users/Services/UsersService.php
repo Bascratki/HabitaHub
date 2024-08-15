@@ -36,4 +36,9 @@ class UsersService
     {
         return $this->entity->find($id)->delete();
     }
+
+    public function findByCpf($cpf): ?User
+    {
+        return $this->entity->where('cpf', $cpf)->first();
+    }
 }

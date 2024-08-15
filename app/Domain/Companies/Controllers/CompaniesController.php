@@ -19,11 +19,10 @@ class CompaniesController extends Controller
     public function index(): JsonResponse
     {
         try {
-
-            $data = $this->service->all();
+            $company = $this->service->all();
 
             return response()->json([
-                'data' => $data,
+                'companies' => $company,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -42,13 +41,13 @@ class CompaniesController extends Controller
                 'cnpj' => 'required|string',
             ]);
             
-            $data = $request->all();
+            $company = $request->all();
 
-            $verifyCnpj = $this->service->findByCnpj($data['cnpj']);
+            $verifyCnpj = $this->service->findByCnpj($company['cnpj']);
         
             if ($verifyCnpj) throw new \Exception('CNPJ já cadastrado');
 
-            $this->service->create($data);
+            $this->service->create($company);
 
             return response()->json([
                 'success' => 'Empresa cadastrada com sucesso'
@@ -63,12 +62,12 @@ class CompaniesController extends Controller
     public function show(int $id): JsonResponse
     {
         try {
-            $data = $this->service->find($id);
+            $company = $this->service->find($id);
 
-            if (!$data) throw new \Exception('Empresa não encontrada');
+            if (!$company) throw new \Exception('Empresa não encontrada');
 
             return response()->json([
-                'data' => $data,
+                'company' => $company,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -84,7 +83,7 @@ class CompaniesController extends Controller
                 'name' => 'required|string',
                 'phone' => 'required|string',
                 'email' => 'required|string',
-                'status' => 'required|sttring'
+                'status' => 'required|string'
             ]);
 
             $company = $this->service->find($id);

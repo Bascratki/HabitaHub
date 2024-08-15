@@ -20,10 +20,10 @@ class ApartmentsController extends Controller
     {
         try {
 
-            $data = $this->service->all();
+            $apartment = $this->service->all();
 
             return response()->json([
-                'data' => $data
+                'apartments' => $apartment
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -42,12 +42,16 @@ class ApartmentsController extends Controller
                 'floor' => 'required|integer',
             ]);
 
-            $data = $request->all();
+            $apartment = $request->all();
 
-            $this->service->create($data);
+            $verificaUserBlockNumberFloor = $this->service->findByUserBlockNumberFloor($apartment['user_id'], $apartment['block_id'], $apartment['number'], $apartment['floor']);
+
+            if ($verificaUserBlockNumberFloor) throw new \Exception('Apartamento já cadastrado');
+
+            $this->service->create($apartment);
 
             return response()->json([
-                'message' => 'Apartamento criado com sucesso'
+                'success' => 'Apartamento criado com sucesso'
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json([
@@ -59,12 +63,12 @@ class ApartmentsController extends Controller
     public function show($id): JsonResponse
     {
         try {
-            $data = $this->service->find($id);
+            $apartment = $this->service->find($id);
 
-            if (!$data) throw new \Exception('Apartamento não encontrado');
+            if (!$apartment) throw new \Exception('Apartamento não encontrado');
             
             return response()->json([
-                'data' => $data
+                'apartment' => $apartment
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -107,12 +111,12 @@ class ApartmentsController extends Controller
     public function delete($id): JsonResponse
     {
         try {
-            $data = $this->service->delete($id);
+            $apartment = $this->service->delete($id);
 
-            if (!$data) throw new \Exception('Apartamento não encontrado');
+            if (!$apartment) throw new \Exception('Apartamento não encontrado');
 
             return response()->json([
-            'message' => 'Apartamento deletado com sucesso'
+                'succes' => 'Apartamento deletado com sucesso'
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([

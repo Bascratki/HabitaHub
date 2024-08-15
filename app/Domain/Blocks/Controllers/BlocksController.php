@@ -19,11 +19,10 @@ class BlocksController extends Controller
     public function index(): JsonResponse
     {
         try {
-
-            $data = $this->service->all();
+            $block = $this->service->all();
 
             return response()->json([
-                'data' => $data
+                'blocks' => $block
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -41,12 +40,16 @@ class BlocksController extends Controller
                 'num_apartments' => 'required|integer',
             ]);
             
-            $data = $request->all();
+            $block = $request->all();
 
-            $this->service->create($data);
+            $verificaBlocoCondominio = $this->service->findByBlockAndCondominium($block['num_block'], $block['condominium_id']);
+
+            if ($verificaBlocoCondominio) throw new \Exception('Bloco já cadastrado neste condomínio');
+
+            $this->service->create($block);
 
             return response()->json([
-                'message' => 'Bloco cadastrado com sucesso'
+                'succes' => 'Bloco cadastrado com sucesso'
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json([
@@ -58,13 +61,12 @@ class BlocksController extends Controller
     public function show($id): JsonResponse
     {
         try {
+            $block = $this->service->find($id);
 
-            $data = $this->service->find($id);
-
-            if (!$data) throw new \Exception('Bloco não encontrado');
+            if (!$block) throw new \Exception('Bloco não encontrado');
 
             return response()->json([
-                'data' => $data,
+                'block' => $block,
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -86,6 +88,10 @@ class BlocksController extends Controller
 
             if (!$block) throw new \Exception('Bloco não encontrado');
 
+            $verificaBlocoCondominio = $this->service->findByBlockAndCondominium($request->num_block, $request->condominium_id);
+
+            if ($verificaBlocoCondominio) throw new \Exception('Bloco já cadastrado neste condomínio');
+
             $this->service->update($id, $request->only(
                 'condominium_id',
                 'num_block',
@@ -105,7 +111,7 @@ class BlocksController extends Controller
     public function delete(int $id): JsonResponse
     {
         try {
-            $block - $this->service->find($id);
+            $block = $this->service->find($id);
 
             if (!$block) throw new \Exception('Bloco não encontrado');
 

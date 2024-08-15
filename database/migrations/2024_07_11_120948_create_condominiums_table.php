@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('name');
             $table->string('address');
-            $table->string('cnpj');
+            $table->string('cep');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

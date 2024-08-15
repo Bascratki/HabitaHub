@@ -20,10 +20,10 @@ class VisitorsController extends Controller
     {
         try {
 
-            $data = $this->service->all();
+            $visitor = $this->service->all();
 
             return response()->json([
-                'data' => $data
+                'visitor' => $visitor
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([
@@ -44,18 +44,16 @@ class VisitorsController extends Controller
                 'document_number' => 'required|string',
             ]);
             
-            $data = $request->all();
-
-            $this->service->create($data);
-
-            if ($request->type === 'visitor') {
-                $message = 'Visitante criado com sucesso';
-            } elseif ($request->type === 'provider') {
-                $message = 'Fornecedor criado com sucesso';
+            $visitor = $request->all();
+    
+            if ($this->service->verificaDocumento($request->document_type, $request->document_number)) {
+                throw new \Exception('Documento já cadastrado');
             }
-
+    
+            $this->service->create($visitor);
+    
             return response()->json([
-                'message' => $message
+                'success' => ($request->type === 'visitor') ? 'Visitante criado com sucesso' : 'Fornecedor criado com sucesso'
             ], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json([
@@ -63,18 +61,18 @@ class VisitorsController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-    
+        
     public function show($id): JsonResponse
     {
         try {
-            $data = $this->service->find($id);
+            $visitor = $this->service->find($id);
 
-            if(!$data) {
+            if(!$visitor) {
                 throw new \Exception('Visitando não encontrado');
             }
 
             return response()->json([
-                'data' => $data
+                'visitor' => $visitor
             ], Response::HTTP_OK);
         } catch (\Exception $e) {
             return response()->json([

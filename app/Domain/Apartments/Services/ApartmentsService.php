@@ -36,4 +36,13 @@ class ApartmentsService
     {
         return $this->entity->find($id)->delete();
     }
+
+    public function findByUserBlockNumberFloor($user_id, $block_id, $number, $floor): ?Apartments
+    {
+        return $this->entity->where('user_id', $user_id)
+            ->where('block_id', $block_id)
+            ->where('number', $number)
+            ->where('floor', $floor)
+            ->first();
+    }
 }
